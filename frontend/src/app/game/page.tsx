@@ -39,7 +39,22 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         pixiContainerRef.current.appendChild(app.view);
       }
 
-    const user = PIXI.Sprite.from('./players/combine-removebg-preview.ico');
+      const background = PIXI.Sprite.from('./players/background.png');
+
+      background.anchor.set(0.5)
+
+
+      background.x = app.screen.width / 2
+      background.y =  app.screen.height / 2
+      background.width = app.screen.width * 1;
+
+      background.height = app.screen.height * 1;
+
+      app.stage.addChild(background)
+
+
+
+    const user = PIXI.Sprite.from('./players/combine (1).ico');
     
     // center the sprite's anchor point
   user.anchor.set(0.5);
@@ -47,8 +62,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
     // move the sprite to the center of the screen
   user.x = app.screen.width / 2;
   user.y = app.screen.height / 2;
-  user.width = 50;
-  user.height = 50;
+  user.width = 150;
+  user.height = 100;
     
     app.stage.addChild(user);
 
@@ -67,8 +82,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
             if (randomNum==2) {
               const corn = PIXI.Sprite.from('./players/corn-removebg-preview.ico');
               corn.anchor.set(0.5)
-              corn.width = 50
-              corn.height = 50
+              corn.width = 75
+              corn.height = 75
               corn.x = app.screen.width - corn.width
               corn.y = random.int(0+corn.height, app.screen.height-corn.height)
               app.stage.addChild(corn)
@@ -81,8 +96,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               } else {
                 obstacle = PIXI.Sprite.from('./players/cow-removebg-preview.ico')
               }
-              obstacle.width = 50
-              obstacle.height = 50
+              obstacle.width = 75
+              obstacle.height = 75
               obstacle.anchor.set(0.5);
               obstacle.x = app.screen.width - obstacle.width
               obstacle.y = random.int(0+obstacle.height, app.screen.height-obstacle.height)
