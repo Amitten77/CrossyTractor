@@ -20,12 +20,12 @@ function rectsIntersect(a: any, b: any) {
   let aBox = a.getBounds();
   let bBox = b.getBounds();
 
-  return aBox.x + aBox.width > bBox.x && bBox.x + bBox.width > aBox.x
-          && aBox.y + aBox.height > bBox.y && bBox.y + bBox.height > aBox.y
+  return aBox.x + aBox.width-10 > bBox.x && bBox.x + bBox.width-10 > aBox.x
+        && aBox.y + aBox.height-10 > bBox.y && bBox.y + bBox.height-10 > aBox.y
 }
 
 
-const SPEED = 5;
+let SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -141,11 +141,11 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       }
       scoreIncreaseTimeTracker += 1
 
-      if (scoreIncreaseTimeTracker <= 300) {
+      if (scoreIncreaseTimeTracker <= 500) {
         currentTime += 1
-      } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
+      } else if (scoreIncreaseTimeTracker > 500 && scoreIncreaseTimeTracker <= 1000) {
         currentTime += 3
-      } else if (scoreIncreaseTimeTracker > 600 && scoreIncreaseTimeTracker <= 900) {
+      } else if (scoreIncreaseTimeTracker > 1000 && scoreIncreaseTimeTracker <= 1500) {
         currentTime += 5
       } else {
         currentTime += 7
