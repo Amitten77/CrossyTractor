@@ -9,12 +9,15 @@ import Constant from '../../../config.json'
 
 const Game = () => {
 
+let enemySpeed: any = 0.5
+let cornSpeed: any = 0.5
 let enemiesObjects: any[] = []
 let cornObjects: any[] = []
 let currentTime = 0
 let score: any = 0
 let hearts: any = 3
 let enemiesMap: any = {}
+let scoreIncreaseTimeTracker: any = 0
 
 function rectsIntersect(a: any, b: any) {
   let aBox = a.getBounds();
@@ -23,6 +26,7 @@ function rectsIntersect(a: any, b: any) {
   return aBox.x + aBox.width > bBox.x && bBox.x + bBox.width > aBox.x
           && aBox.y + aBox.height > bBox.y && bBox.y + bBox.height > aBox.y
 }
+
 
 const SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
@@ -54,7 +58,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
 
 
-    const user = PIXI.Sprite.from('./players/combine (1).ico');
+
+    const user = PIXI.Sprite.from('./players/combine-removebg-preview (1).png');
     
     // center the sprite's anchor point
   user.anchor.set(0.5);
@@ -62,10 +67,16 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
     // move the sprite to the center of the screen
   user.x = app.screen.width / 2;
   user.y = app.screen.height / 2;
-  user.width = 150;
+  user.width = 190;
   user.height = 100;
     
     app.stage.addChild(user);
+
+    let scoreText: any = -1
+
+
+    let hearts_list: any[] = []
+
 
     app.ticker.add((delta) =>  //GOATED FUNCTION
   {
@@ -75,17 +86,89 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       //setTime(time + 1);
       //console.log(time);
       //W
+      if (scoreText != -1) {
+        app.stage.removeChild(scoreText)
+      }
 
-      currentTime += 1
+      scoreText = new PIXI.Text('Corn Harvested: ' + score.toString(), {
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fill: 0x000000, // Color in hexadecimal format
+      });
+      
+      // Position the score text on the canvas
+      scoreText.x = 10;
+      scoreText.y = 10;
+      
+      // Add the score text to the stage
+      app.stage.addChild(scoreText);
+
+      if (hearts_list.length > 0) {
+        for (let i  = 0; i < hearts_list.length; i++) {
+          app.stage.removeChild(hearts_list[i]);
+        }
+        hearts_list = []
+      }
+
+      for (let i = 0; i < hearts; i++) {
+        const heart = PIXI.Sprite.from('./players/Heart.ico')
+  
+        heart.anchor.set(0.5)
+  
+        heart.x = app.screen.width - (40 * (i + 1));
+        heart.y = 50;
+        heart.width = 50;
+        heart.height = 50;
+        
+  
+        hearts_list.push(heart)
+  
+        app.stage.addChild(heart);
+      }
+
+      if (user.x < 75) {
+        user.x = 75
+      }
+      if (user.y < 350) {
+        user.y = 350
+      }
+      if (user.x > 1365) {
+        user.x = 1365
+      }
+      if (user.y > 540) {
+        user.y = 540
+      }
+      scoreIncreaseTimeTracker += 1
+
+      if (scoreIncreaseTimeTracker <= 300) {
+        currentTime += 1
+      } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
+        currentTime += 3
+      } else if (scoreIncreaseTimeTracker > 600 && scoreIncreaseTimeTracker <= 900) {
+        currentTime += 5
+      } else {
+        currentTime += 7
+      }
       if (currentTime > 300) {
-        let randomNum = random.int(1,2)
-            if (randomNum==2) {
+        let randomNum = 0
+        if (scoreIncreaseTimeTracker <= 300) {
+          randomNum = random.int(1,4)
+        } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
+          randomNum = random.int(1,3)
+          enemySpeed += 0.5
+          cornSpeed += 0.5
+        } else {
+          randomNum = random.int(1,2)
+          enemySpeed += 0.5
+          cornSpeed += 0.5
+        }
+            if (randomNum==2 || randomNum==3 || randomNum==4) {
               const corn = PIXI.Sprite.from('./players/corn-removebg-preview.ico');
               corn.anchor.set(0.5)
               corn.width = 75
               corn.height = 75
               corn.x = app.screen.width - corn.width
-              corn.y = random.int(0+corn.height, app.screen.height-corn.height)
+              corn.y = random.int(350, 540)
               app.stage.addChild(corn)
               cornObjects.push(corn)
             } else if (randomNum==1) {
@@ -100,23 +183,27 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               obstacle.height = 75
               obstacle.anchor.set(0.5);
               obstacle.x = app.screen.width - obstacle.width
-              obstacle.y = random.int(0+obstacle.height, app.screen.height-obstacle.height)
+              obstacle.y = random.int(350, 540)
               app.stage.addChild(obstacle)
               enemiesObjects.push(obstacle)
               enemiesMap[obstacle] = false
             }
         currentTime = 0
       }
+
+
+
       for (const i of enemiesObjects) {
-        i.x -= .5
+        i.x -= enemySpeed
         if (rectsIntersect(user, i)) {
+          console.log(user.x, user.y, i.x, i.y)
           if (!enemiesMap[i]) {
             hearts -= 1
             enemiesMap[i] = true
           }
           app.stage.removeChild(i)
           let elementToRemove: any = i
-          cornObjects = cornObjects.filter(item => item !== elementToRemove)
+          enemiesObjects = enemiesObjects.filter(item => item !== elementToRemove)
           console.log(hearts)
           if (hearts <= 0) {
             window.location.replace(Constant.rootURL + '/endGame')
@@ -125,8 +212,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           
         }
       }
+
+
       for (const j of cornObjects) {
-        j.x -= .5
+        j.x -= cornSpeed
         if (rectsIntersect(user, j)) {
           score += 1
           app.stage.removeChild(j)
