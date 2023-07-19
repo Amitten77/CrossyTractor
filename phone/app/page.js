@@ -33,14 +33,17 @@ const [divStyle, setDivStyle] = useState({
 });
 
 const [buttonClicked, setButtonClicked] = useState("nah");
-const [px, setPx] = useState(50);
-const [py, setPy] = useState(50);
-const [vx, setVx] = useState(50);
-const [vy, setVy] = useState(50);
+// const [px, setPx] = useState(50);
+// const [py, setPy] = useState(50);
+// const [vx, setVx] = useState(0);
+// const [vy, setVy] = useState(0);
+let px = 50
+let py = 50
+let vx = 0
+let vy = 0
 
 function getAccel() {
     setButtonClicked("yeah");
-    console.log("OIASJ")
     DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
        // Add a listener to get smartphone orientation 
@@ -53,35 +56,35 @@ function getAccel() {
                 
                 // Update velocity according to how tilted the phone is
                 // Since phones are narrower than they are long, double the increase to the x velocity
-                //vx = vx + leftToRight_degrees * updateRate*2; 
-                //vy = vy + frontToBack_degrees * updateRate;
-                setVx(vx + leftToRight_degrees * updateRate*2)
-                setVy(vy + frontToBack_degrees * updateRate)
+                vx = vx + leftToRight_degrees * updateRate*2; 
+                vy = vy + frontToBack_degrees * updateRate;
+                // setVx(vx + leftToRight_degrees * updateRate*2)
+                // setVy(vy + frontToBack_degrees * updateRate)
                 // Update position and clip it to bounds
 
 
 
-                //px = px + vx*.5;
-                setPx(px + vx*.5);
+                px = px + vx*.5;
+                // setPx(px + vx*.5);
 
 
 
                 if (px > 98 || px < 0){ 
-                    //px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
-                    //vx = 0;
-                    setPx(Math.max(0, Math.min(98, px)))
-                    setVx(0)
+                    px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
+                    vx = 0;
+                    // setPx(Math.max(0, Math.min(98, px)))
+                    // setVx(0)
 
                 }
 
-                //py = py + vy*.5;
+                py = py + vy*.5;
 
-                setPy(py + vy*.5)
+                //setPy(py + vy*.5)
                 if (py > 98 || py < 0){
-                    // py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
-                    // vy = 0;
-                    setPy(Math.max(0, Math.min(98, py)))
-                    setVy(0)
+                    py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
+                    vy = 0;
+                    // setPy(Math.max(0, Math.min(98, py)))
+                    // setVy(0)
                 }
                 
                 dot = document.getElementById("indicatorDot")
