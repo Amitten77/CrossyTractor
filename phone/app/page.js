@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import { useState } from 'react';
 
 const buttonStyles = {
   height: "50px",
@@ -20,7 +21,11 @@ var vx = 0.0; // Velocity x and y
 var vy = 0.0;
 var updateRate = 1/60; // Sensor refresh rate
 
-function getAccel(){
+const [buttonClicked, setButtonClicked] = useState("nah");
+
+function getAccel() {
+    setButtonClicked("yeah");
+    console.log("OIASJ")
     DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
        // Add a listener to get smartphone orientation 
@@ -60,7 +65,8 @@ function getAccel(){
 
   return (
     <main>
-      <button id="accelPermsButton"  style={buttonStyles} onclick={getAccel}><h1>Get Accelerometer Permissions</h1></button>
+      <button id="accelPermsButton"  style={buttonStyles} onClick={getAccel}><h1>Get Accelerometer Permissions</h1></button>
+      <p>{buttonClicked}</p>
       <p>Velocity: ({vx}, {vy})</p>
       <p>Position: ({px}, {py})</p>
       <div class="indicatorDot" style={divStyles}></div>
