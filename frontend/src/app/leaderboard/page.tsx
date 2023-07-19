@@ -4,6 +4,17 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Constant from '../../../config.json'
 
+const buttonStyles = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace"
+};
+
 const Leaderboard = () => {
   const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState<any[]>([]);
@@ -48,7 +59,7 @@ const Leaderboard = () => {
         </table>
       </div>
       <a href="/" className='flex justify-center'>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mr-6'>Back to Home</button>
+        <button id="returnHome" style={buttonStyles}>Back to Home</button>
       </a>
       </div>
       }
