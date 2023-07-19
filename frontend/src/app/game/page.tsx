@@ -1,11 +1,8 @@
 "use client"
 import React, { useEffect, useRef } from 'react'
 import * as PIXI from 'pixi.js';
-import { get } from 'http';
-import { start } from 'repl';
 import random from 'random'
 import Constant from '../../../config.json'
-
 
 const Game = () => {
 
@@ -33,6 +30,10 @@ let SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const audio = document.getElementById('deereAudio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
     const app = new PIXI.Application<HTMLCanvasElement>({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -153,11 +154,11 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (user.y < 350) {
         user.y = 350
       }
-      if (user.x > 1365) {
-        user.x = 1365
+      if (user.x > app.screen.width - 30) {
+        user.x = app.screen.width - 30
       }
-      if (user.y > 540) {
-        user.y = 540
+      if (user.y > app.screen.height - 30) {
+        user.y = app.screen.height - 30
       }
       scoreIncreaseTimeTracker += 1
 
@@ -217,6 +218,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       for (const i of enemiesObjects) {
         i.x -= enemySpeed
         if (rectsIntersect(user, i)) {
+          const audio = document.getElementById('oopsAudio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
           console.log(user.x, user.y, i.x, i.y)
           if (!enemiesMap[i]) {
             hearts -= 1
@@ -238,6 +243,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       for (const j of cornObjects) {
         j.x -= cornSpeed
         if (rectsIntersect(user, j)) {
+          const audio = document.getElementById('audio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
           score += 1
           app.stage.removeChild(j)
           let elementToRemove: any = j

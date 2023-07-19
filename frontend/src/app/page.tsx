@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import random from 'random'
 
+
 export default function Home() {
   const [name, setName] = useState<string>("Player")
 
@@ -9,6 +10,10 @@ export default function Home() {
     const playerId = random.int(0, 1000000)
     localStorage.setItem('name', name);
     localStorage.setItem('playerId', playerId.toString())
+    const audio = document.getElementById('audio') as HTMLVideoElement
+    if (audio) {
+      audio.play()
+    }
   }
 
   const handleInputChange = (e: any) => {
@@ -36,10 +41,20 @@ export default function Home() {
           <button id="GM" style={buttonStyles} onClick={handleOnClick}>Play Game</button>
         </a>
         <a href="leaderboard">
-          <button id="LDBD" style={buttonStyles}>Check out Leaderboard</button>
+          <button id="LDBD" style={buttonStyles} onClick={() => {
+            const audio = document.getElementById('audio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
+          }}>Check out Leaderboard</button>
         </a>
         <a href="endGame">
-          <button id="EGM" style={buttonStyles}>End Screen</button>
+          <button id="EGM" style={buttonStyles} onClick={() => {
+            const audio = document.getElementById('audio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
+          }}>End Screen</button>
         </a>
       </div>
     </>
