@@ -8,6 +8,7 @@ const Game = () => {
 
 const SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const app = new PIXI.Application<HTMLCanvasElement>({
         width: window.innerWidth,
