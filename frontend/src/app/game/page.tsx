@@ -124,7 +124,6 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
   }, [])
   return (
     <div ref={pixiContainerRef} id="gameDiv">
-        Game
     </div>
   )
 }
