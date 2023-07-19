@@ -18,6 +18,7 @@ let score: any = 0
 let hearts: any = 3
 let enemiesMap: any = {}
 let scoreIncreaseTimeTracker: any = 0
+let minAmountOfCornUntilEthanolPowerup: any = 10
 
 function rectsIntersect(a: any, b: any) {
   let aBox = a.getBounds();
@@ -60,15 +61,35 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
 
     const user = PIXI.Sprite.from('./players/combine-removebg-preview (1).png');
+
+
+
+    const farmerStanding = PIXI.Sprite.from('./players/farmer.ico');
+    const farmerWithoutLasso = PIXI.Sprite.from('./players/FILE_NAME_HERE')
+    const lasso = PIXI.Sprite.from('./players/lasso')
+    farmerStanding.anchor.set(0.5);
+    farmerWithoutLasso.anchor.set(0.5);
+    lasso.anchor.set(0.5)
+    //Starting X and Y position here
+    farmerStanding.x = app.screen.width/2
+    farmerStanding.width = 100
+    farmerStanding.height = 100
+    farmerStanding.y = 230
+    app.stage.addChild(farmerStanding)
+
+    //Needs editting
+    farmerWithoutLasso.y = 230
+    lasso.height = 0
     
+
     // center the sprite's anchor point
-  user.anchor.set(0.5);
-    
-    // move the sprite to the center of the screen
-  user.x = app.screen.width / 2;
-  user.y = app.screen.height / 2;
-  user.width = 190;
-  user.height = 100;
+    user.anchor.set(0.5);
+      
+      // move the sprite to the center of the screen
+    user.x = app.screen.width / 2;
+    user.y = app.screen.height / 2;
+    user.width = 190;
+    user.height = 100;
     
     app.stage.addChild(user);
 
@@ -223,6 +244,9 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           cornObjects = cornObjects.filter(item => item !== elementToRemove)
           console.log(score)
         }
+        if (score >= minAmountOfCornUntilEthanolPowerup) {
+          minAmountOfCornUntilEthanolPowerup += 10
+        }
       }
 
       if (keys["87"]) {
@@ -240,6 +264,41 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (keys["68"]) {
         user.x += SPEED
       }
+
+
+      //Farmer Controls
+      if (keys["37"]) {
+        farmerStanding.x -= SPEED
+      }
+      if (keys["39"]) {
+        farmerStanding.x += SPEED
+      }
+      if (keys["32"]) {
+        farmerWithoutLasso.x = farmerStanding.x-10
+        lasso.x = farmerStanding.x
+        app.stage.removeChild(farmerStanding)
+        app.stage.addChild(farmerWithoutLasso)
+        app.stage.addChild(lasso)
+        for (let i of enemiesObjects) {
+          if (farmerStanding.x - i.x < 20) {
+            lasso.height = Math.abs(farmerStanding.y - i.y)
+            for (let j=1; j<app.screen.height-i.y; j+5) {
+              i.y -= j
+              if (lasso.height > 0) {
+                lasso.height -= j
+              }
+            }
+            let elementToRemove2 = i
+            enemiesObjects.filter(item => item !== elementToRemove2)
+            enemiesMap[i] = true
+            app.stage.removeChild(farmerWithoutLasso)
+            app.stage.removeChild(lasso)
+            app.stage.addChild(farmerStanding)
+          }
+        }
+      }
+
+
   });
 
   window.addEventListener("keydown", keysDown);
