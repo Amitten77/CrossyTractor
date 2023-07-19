@@ -12,16 +12,31 @@ const divStyles = {
   backgroundColor: "#ffab56",
   borderRadius: "50%",
   position: "fixed",
+  left: "30%",
+  right: "30%"
 };
 
 export default function Home() {
-  var px = 50; // Position x and y
-var py = 50;
-var vx = 0.0; // Velocity x and y
-var vy = 0.0;
+//   var px = 50; // Position x and y
+// var py = 50;
+// var vx = 0.0; // Velocity x and y
+// var vy = 0.0;
 var updateRate = 1/60; // Sensor refresh rate
+const [divStyle, setDivStyle] = useState({
+  width: "30px",
+  height: "30px",
+  backgroundColor: "#ffab56",
+  borderRadius: "50%",
+  position: "fixed",
+  left: "30%",
+  right: "30%"
+});
 
 const [buttonClicked, setButtonClicked] = useState("nah");
+const [px, setPx] = useState(50);
+const [py, setPy] = useState(50);
+const [vx, setVx] = useState(50);
+const [vy, setVy] = useState(50);
 
 function getAccel() {
     setButtonClicked("yeah");
@@ -38,26 +53,49 @@ function getAccel() {
                 
                 // Update velocity according to how tilted the phone is
                 // Since phones are narrower than they are long, double the increase to the x velocity
-                vx = vx + leftToRight_degrees * updateRate*2; 
-                vy = vy + frontToBack_degrees * updateRate;
-                
+                //vx = vx + leftToRight_degrees * updateRate*2; 
+                //vy = vy + frontToBack_degrees * updateRate;
+                setVx(vx + leftToRight_degrees * updateRate*2)
+                setVy(vy + frontToBack_degrees * updateRate)
                 // Update position and clip it to bounds
-                px = px + vx*.5;
+
+
+
+                //px = px + vx*.5;
+                setPx(px + vx*.5);
+
+
+
                 if (px > 98 || px < 0){ 
-                    px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
-                    vx = 0;
+                    //px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
+                    //vx = 0;
+                    setPx(Math.max(0, Math.min(98, px)))
+                    setVx(0)
+
                 }
 
-                py = py + vy*.5;
+                //py = py + vy*.5;
+
+                setPy(py + vy*.5)
                 if (py > 98 || py < 0){
-                    py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
-                    vy = 0;
+                    // py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
+                    // vy = 0;
+                    setPy(Math.max(0, Math.min(98, py)))
+                    setVy(0)
                 }
                 
-                dot = document.getElementsByClassName("indicatorDot")[0]
-                dot.setAttribute('style', "left:" + (px) + "%;" +
-                                              "top:" + (py) + "%;");
-                
+                dot = document.getElementById("indicatorDot")
+                // dot.setAttribute('style', "left:" + (px) + "%;" +
+                //                               "top:" + (py) + "%;");
+                setDivStyle({
+                  width: "30px",
+                  height: "30px",
+                  backgroundColor: "#ffab56",
+                  borderRadius: "50%",
+                  position: "fixed",
+                  left: px.toString() + "%",
+                  right: py.toString() + "%"
+                });
             });
         }
     });
@@ -69,7 +107,7 @@ function getAccel() {
       <p>{buttonClicked}</p>
       <p>Velocity: ({vx}, {vy})</p>
       <p>Position: ({px}, {py})</p>
-      <div class="indicatorDot" style={divStyles}></div>
+      <div class="indicatorDot" id="indicatorDot" style={divStyle}></div>
     </main>
   )
 }
