@@ -6,11 +6,11 @@
 
 ## Team Members:
 
-#### Ezra Akresh: Singleton Law Firm
-#### Amit Krishnaiyer: John Deere
-#### Dhruv Kulgod: John Deere
-#### Kavya Puranam: John Deere
-#### Xochilith Saldaña: John Deere
+#### :penguin: Ezra Akresh: Singleton Law Firm
+#### :orangutan: Amit Krishnaiyer: John Deere
+#### :stuck_out_tongue_closed_eyes: Dhruv Kulgod: John Deere
+#### :cherry_blossom: Kavya Puranam: John Deere
+#### :zany_face: Xochilith Saldaña: John Deere
 
 
 
@@ -42,14 +42,16 @@ npm run dev
 ## Our tech stack
 
 Frontend:
-- **React** and **Next.js** as our web framework for routing and deployment
+- **React** and **Next.js** as a web framework for routing
 - **Tailwindcss** for defining styles for web-page
 - **Pixi.js** for quick rendering for our 2D graphics
 - **Gimp** and **Procreate** for our custom graphics
+- **Vercel** for deployment
 
 Backend:
 - **Express** for middleware 
 - **MongoDB** for storing leaderboard data
+- Render.com for deployment
 
 
 
