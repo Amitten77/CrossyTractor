@@ -32,7 +32,10 @@ const endGame = () => {
       <div className="endgame-container">
         <h1>Game Over!</h1>
         <p>Your Score: {score}</p>
-        <button onClick={handleRestart}>Restart</button>
+        <a href="game">
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mr-6'>Restart Game</button>
+        </a>
+
       </div>
 
       <div className="leaderboard-container">
