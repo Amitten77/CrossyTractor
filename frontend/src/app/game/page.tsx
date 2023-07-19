@@ -27,6 +27,7 @@ function rectsIntersect(a: any, b: any) {
           && aBox.y + aBox.height > bBox.y && bBox.y + bBox.height > aBox.y
 }
 
+
 const SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +59,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
 
 
-    const user = PIXI.Sprite.from('./players/combine-removebg-preview.ico');
+    const user = PIXI.Sprite.from('./players/combine-removebg-preview (1).png');
     
     // center the sprite's anchor point
   user.anchor.set(0.5);
@@ -180,9 +181,13 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
             }
         currentTime = 0
       }
+
+
+
       for (const i of enemiesObjects) {
         i.x -= enemySpeed
         if (rectsIntersect(user, i)) {
+          console.log(user.x, user.y, i.x, i.y)
           if (!enemiesMap[i]) {
             hearts -= 1
             enemiesMap[i] = true
@@ -198,6 +203,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           
         }
       }
+
+
       for (const j of cornObjects) {
         j.x -= cornSpeed
         if (rectsIntersect(user, j)) {
