@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "phone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,17 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.4.2",
-    "@types/react": "18.2.15",
-    "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "next": "13.4.10",
-    "pixi.js": "^7.2.4",
     "postcss": "8.4.26",
-    "random": "^4.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "tailwindcss": "3.3.3"
   }
 }

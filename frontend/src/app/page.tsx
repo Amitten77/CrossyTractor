@@ -1,11 +1,14 @@
 'use client'
 import { useState } from 'react';
+import random from 'random'
 
 export default function Home() {
   const [name, setName] = useState<string>("Player")
 
   const handleOnClick = () => {
+    const playerId = random.int(0, 1000000)
     localStorage.setItem('name', name);
+    localStorage.setItem('playerId', playerId.toString())
   }
 
   const handleInputChange = (e: any) => {
