@@ -6,6 +6,18 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    // colors: {
+    //   JD_yellow: {
+    //     light: '#b3bcf5',
+    //     DEFAULT: '#ffde00',
+    //     dark: '#202e78',
+    //   },
+    //   JD_green: {
+    //     light: '#b3bcf5',
+    //     DEFAULT: '#367c2b',
+    //     dark: '#202e78',
+    //   }
+    // },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
