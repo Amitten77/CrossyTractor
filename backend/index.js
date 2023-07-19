@@ -113,3 +113,121 @@ app.patch('/leaderboard/:id', (req, res) => {
 
 
 })
+
+//PLAYER INFORMATION
+
+/*
+SAMPLE ENTRY
+{
+  "_id": "64b8101d3703e40cf5fdf3c2",
+  "_player_id": 10,
+  "orientation": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "acceleration": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "accelerationGx": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "gyroscope": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  }
+}
+*/
+
+
+app.get('/playerInformation', (req, res) => {
+
+    let players = []
+    
+    db.collection('playerInformation')
+    .find()
+    .sort({ _score: -1})
+    .forEach(player => players.push(player))
+    .then(() => {
+        res.status(200).json(players)
+    }).catch((err) => {
+        console.log(err)
+        res.status(500).json({error: "Could not fetch the playerInformation"})
+    }) //returns a cursor
+})
+
+app.get('/playerInformation/:id', (req, res) => {
+
+    
+
+        db.collection('playerInformation')
+        .findOne({_player_id: parseInt(req.params.id)})
+        .then(doc => {
+            res.status(200).json(doc)
+        })
+        .catch(err => {
+            res.status(500).json({error: 'Could not fetch the playerInformation'})
+        })
+})
+
+
+
+
+
+
+app.post('/playerInformation', (req, res) => {
+    const book = req.body
+
+    db.collection('playerInformation')
+    .insertOne(book)
+    .then(result => {
+        res.status(201).json(result)
+    })
+    .catch(err => {
+        res.status(500).json({err: 'Could not create a new document'})
+    })
+})
+
+
+
+
+app.delete('/playerInformation/:id', (req, res) => {
+
+
+
+        db.collection('playerInformation')
+        .deleteOne({_player_id: parseInt(req.params.id)})
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).json({error: 'Could not delete the document'})
+        })
+    
+
+
+})
+
+
+app.patch('/playerInformation/:id', (req, res) => {
+    const updates = req.body
+
+
+
+        db.collection('playerInformation')
+        .updateOne({_player_id: parseInt(req.params.id)}, {$set: updates})
+        .then(result => {
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).json({error: 'Could not update the document'})
+        })
+    } 
+
+
+)
