@@ -9,12 +9,15 @@ import Constant from '../../../config.json'
 
 const Game = () => {
 
+let enemySpeed: any = 0.5
+let cornSpeed: any = 0.5
 let enemiesObjects: any[] = []
 let cornObjects: any[] = []
 let currentTime = 0
 let score: any = 0
 let hearts: any = 3
 let enemiesMap: any = {}
+let scoreIncreaseTimeTracker: any = 0
 
 function rectsIntersect(a: any, b: any) {
   let aBox = a.getBounds();
@@ -76,16 +79,40 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       //console.log(time);
       //W
 
+      if (user.x < 75) {
+        user.x = 75
+      }
+      if (user.y < 350) {
+        user.y = 350
+      }
+      if (user.x > 1365) {
+        user.x = 1365
+      }
+      if (user.y > 540) {
+        user.y = 540
+      }
       currentTime += 1
+      scoreIncreaseTimeTracker += 1
       if (currentTime > 300) {
-        let randomNum = random.int(1,2)
-            if (randomNum==2) {
+        let randomNum = 0
+        if (scoreIncreaseTimeTracker <= 300) {
+          randomNum = random.int(1,4)
+        } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
+          randomNum = random.int(1,3)
+          enemySpeed += 0.5
+          cornSpeed += 0.5
+        } else {
+          randomNum = random.int(1,2)
+          enemySpeed += 0.5
+          cornSpeed += 0.5
+        }
+            if (randomNum==2 || randomNum==3 || randomNum==4) {
               const corn = PIXI.Sprite.from('./players/corn-removebg-preview.ico');
               corn.anchor.set(0.5)
               corn.width = 75
               corn.height = 75
               corn.x = app.screen.width - corn.width
-              corn.y = random.int(0+corn.height, app.screen.height-corn.height)
+              corn.y = random.int(350, 540)
               app.stage.addChild(corn)
               cornObjects.push(corn)
             } else if (randomNum==1) {
@@ -100,7 +127,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               obstacle.height = 75
               obstacle.anchor.set(0.5);
               obstacle.x = app.screen.width - obstacle.width
-              obstacle.y = random.int(0+obstacle.height, app.screen.height-obstacle.height)
+              obstacle.y = random.int(350, 540)
               app.stage.addChild(obstacle)
               enemiesObjects.push(obstacle)
               enemiesMap[obstacle] = false
@@ -108,7 +135,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         currentTime = 0
       }
       for (const i of enemiesObjects) {
-        i.x -= .5
+        i.x -= enemySpeed
         if (rectsIntersect(user, i)) {
           if (!enemiesMap[i]) {
             hearts -= 1
@@ -126,7 +153,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         }
       }
       for (const j of cornObjects) {
-        j.x -= .5
+        j.x -= cornSpeed
         if (rectsIntersect(user, j)) {
           score += 1
           app.stage.removeChild(j)
