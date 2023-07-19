@@ -138,8 +138,17 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (user.y > 540) {
         user.y = 540
       }
-      currentTime += 1
       scoreIncreaseTimeTracker += 1
+
+      if (scoreIncreaseTimeTracker <= 300) {
+        currentTime += 1
+      } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
+        currentTime += 3
+      } else if (scoreIncreaseTimeTracker > 600 && scoreIncreaseTimeTracker <= 900) {
+        currentTime += 5
+      } else {
+        currentTime += 7
+      }
       if (currentTime > 300) {
         let randomNum = 0
         if (scoreIncreaseTimeTracker <= 300) {
