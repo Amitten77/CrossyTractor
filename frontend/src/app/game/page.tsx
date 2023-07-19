@@ -15,6 +15,7 @@ let currentTime = 0
 
 const SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const app = new PIXI.Application<HTMLCanvasElement>({
         width: window.innerWidth,
@@ -123,7 +124,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
   }, [])
   return (
     <div ref={pixiContainerRef} id="gameDiv">
-        
+        Game
     </div>
   )
 }
