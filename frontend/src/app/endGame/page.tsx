@@ -1,16 +1,7 @@
-// import React from 'react'
-
-// const endGame = () => {
-//   return (
-//     <div>endGame</div>
-//   )
-// }
-
-// export default endGame;
-
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Constant from '../../../config.json'
 
 // const leaderboardData = [
 //   { name: 'Player 1', score: 100 },
@@ -30,35 +21,65 @@ const buttonStyles = {
 };
 
 const endGame = () => {
-  const [score, setScore] = useState(0);
+  const [notAdded, setNotAdded] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [name, setName] = useState<string>("Player");
+  const [score, setScore] = useState<string>("0");
 
-//   const handleRestart = () => {
-//     // Replace this with your restart game logic
-//     // For demonstration purposes, we're just resetting the score to 0
-//     setScore(0);
-//   };
+  useEffect(() => {
+    // Perform localStorage action
+    const storedName = localStorage.getItem('name');
+    const storedScore = localStorage.getItem('score');
+    console.log(storedName);
+    console.log(storedScore);
+    if (storedName) {
+      setName(storedName)
+    }
+    if (storedScore) {
+      setScore(storedScore)
+    }
+    setLoading(false);
+  }, [])
+
+  const handleLeaderboard = () => {
+    if (notAdded) {
+    fetch(Constant.backendURL + "/leaderboard", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "_user": name,
+        "_score": parseInt(score)
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Write operation successful:', data);
+      })
+      .catch((error) => {
+        console.error('Error occurred during write operation:', error);
+      });
+      setNotAdded(false);
+    }
+  }
+
 
   return (
     <div>
+      { loading ? <p>Loading....</p> :
       <div className="endgame-container">
         <h1>Game Over!</h1>
-        <p>Your Score: {score}</p>
-        <a href="game">
-          <button id="Restart" style={buttonStyles} >Restart Game</button>
+        <p>{name}, your score is: {score}</p>
+        <button id="addLeaderboard" style={buttonStyles} onClick={handleLeaderboard}>Add to Leaderboard</button>
+        <a href="/">
+          <button id="Restart" style={buttonStyles} >Back to Home</button>
         </a>
         <a href="leaderboard">
           <button id="LDBD" style={buttonStyles} >Check out Leaderboard</button>
         </a>
       </div>
-
-      {/* <div className="leaderboard-container">
-        <h2>Leaderboard</h2>
-        <ol>
-          {leaderboardData.map((entry, index) => (
-            <li key={index}>{`${entry.name}: ${entry.score}`}</li>
-          ))}
-        </ol>
-      </div> */}
+      }
     </div>
   );
 };
