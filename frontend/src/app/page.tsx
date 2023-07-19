@@ -1,6 +1,11 @@
 'use client'
 import { useState } from 'react';
+import * as PIXI from 'pixi.js';
+import { get } from 'http';
+import { start } from 'repl';
 import random from 'random'
+
+// import Constant from '../../../config.json'
 
 export default function Home() {
   const [name, setName] = useState<string>("Player")
@@ -27,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="bg-url('/path/to/your/image.jpg')">
       <h1 className="text-6xl flex justify-center mt-6">Crossy Tractor!!</h1>
       <h2>What is your name?</h2>
       <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Your Name" onChange={handleInputChange}/>
@@ -42,6 +47,6 @@ export default function Home() {
           <button id="EGM" style={buttonStyles}>End Screen</button>
         </a>
       </div>
-    </>
+    </div>
   )
 }

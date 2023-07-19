@@ -68,8 +68,9 @@ const endGame = () => {
   return (
     <div>
       { loading ? <p>Loading....</p> :
-      <div className="endgame-container">
-        <h1>Game Over!</h1>
+      // <div className="endgame-container">
+        <div className="endgame-container">
+        <h1 className='text-6xl flex justify-center mt-6'>Game Over!</h1>
         <p>{name}, your score is: {score}</p>
         <button id="addLeaderboard" style={buttonStyles} onClick={handleLeaderboard}>Add to Leaderboard</button>
         <a href="/">

@@ -15,6 +15,12 @@ const buttonStyles = {
   fontFace: "OCR A Std, monospace"
 };
 
+const leaderboardStyles = {
+  fontFamily: 'VT323', // Use the 'VT323' font from Google Fonts
+  fontSize: '16px',
+  // fontWeight: 'bold',
+};
+
 const Leaderboard = () => {
   const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState<any[]>([]);
@@ -37,22 +43,22 @@ const Leaderboard = () => {
       <p>Loading...</p> : 
 
 
-      <div id="leaderboardDiv">
+      <div id="leaderboardDiv" style={leaderboardStyles}>
         <h1 className='text-7xl flex justify-center mb-8 mt-8'>Leaderboard</h1>
         <div className='flex justify-center mb-8'>
           <table className="border-collapse border border-slate-500">
               <tr>
-                  <th className="border border-slate-600 p-8">Rank</th>
-                  <th className="border border-slate-600 p-8">Name</th>
-                  <th className="border border-slate-600 p-8">Score</th>
+                  <th className="border-2 border-black p-6">Rank</th>
+                  <th className="border-2 border-black ...">Name</th>
+                  <th className="border-2 border-black ...">Score</th>
               </tr>
               {entries.map(entry => {
                 rank += 1
               return (
               <tr key={entry._id}>
-                <td className="border border-slate-600 p-6">{rank}</td>
-                <td className="border border-slate-600 p-6">{entry._user}</td>
-                <td className="border border-slate-600 p-6">{entry._score}</td>
+                <td className="border-2 border-black p-7">{rank}</td>
+                <td className="border-2 border-black p-7">{entry._user}</td>
+                <td className="border-2 border-black p-7">{entry._score}</td>
               </tr>
               )
             })}
@@ -68,3 +74,57 @@ const Leaderboard = () => {
 }
 
 export default Leaderboard
+
+
+
+// import React from 'react';
+
+// const leaderboardData = [
+//   { _id: 1, _user: 'Player 1', _score: 100 },
+//   { _id: 2, _user: 'Player 2', _score: 80 },
+//   { _id: 3, _user: 'Player 3', _score: 60 },
+// ];
+
+// const Leaderboard = () => {
+//   let rank = 0;
+
+//   const buttonStyles = {
+//     // Add your button styles here if needed
+//   };
+
+//   return (
+//     <div id="leaderboardDiv">
+//       <h1 className="text-4xl font-bold text-center mb-8 mt-8">Leaderboard</h1>
+//       <div className="flex justify-center mb-8">
+//         <table className="border-collapse border border-slate-500">
+//           <thead>
+//             <tr>
+//               <th className="border border-slate-600 p-4 font-bold">Rank</th>
+//               <th className="border border-slate-600 p-4 font-bold">Name</th>
+//               <th className="border border-slate-600 p-4 font-bold">Score</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {leaderboardData.map((entry) => {
+//               rank += 1;
+//               return (
+//                 <tr key={entry._id}>
+//                   <td className="border border-slate-600 p-4">{rank}</td>
+//                   <td className="border border-slate-600 p-4">{entry._user}</td>
+//                   <td className="border border-slate-600 p-4">{entry._score}</td>
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       </div>
+//       <div className="flex justify-center">
+//         <a href="/">
+//           <button style={buttonStyles}>Back to Home</button>
+//         </a>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Leaderboard;

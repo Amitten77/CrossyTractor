@@ -23,8 +23,12 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     ) */
-    height: 850px;
-    background: rgb(54,124,43);
-    background: linear-gradient(0deg, rgba(54,124,43,1) 24%, rgba(255,222,0,1) 100%);
+    /* height: 850px; */
+    /* background: rgb(54,124,43);
+    background: linear-gradient(0deg, rgba(54,124,43,1) 24%, rgba(255,222,0,1) 100%); */
     /* rgb(var(--background-start-rgb)); */
+
+    background-image: url('/players/background_title.png');
+    background-size: 100% 400%;
+
 }
