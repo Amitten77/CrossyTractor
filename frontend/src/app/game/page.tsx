@@ -54,7 +54,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
 
 
-    const user = PIXI.Sprite.from('./players/combine (1).ico');
+
+    const user = PIXI.Sprite.from('./players/combine-removebg-preview.ico');
     
     // center the sprite's anchor point
   user.anchor.set(0.5);
@@ -62,10 +63,16 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
     // move the sprite to the center of the screen
   user.x = app.screen.width / 2;
   user.y = app.screen.height / 2;
-  user.width = 150;
+  user.width = 190;
   user.height = 100;
     
     app.stage.addChild(user);
+
+    let scoreText: any = -1
+
+
+    let hearts_list: any[] = []
+
 
     app.ticker.add((delta) =>  //GOATED FUNCTION
   {
@@ -75,6 +82,45 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       //setTime(time + 1);
       //console.log(time);
       //W
+      if (scoreText != -1) {
+        app.stage.removeChild(scoreText)
+      }
+
+      scoreText = new PIXI.Text('Corn Harvested: ' + score.toString(), {
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fill: 0x000000, // Color in hexadecimal format
+      });
+      
+      // Position the score text on the canvas
+      scoreText.x = 10;
+      scoreText.y = 10;
+      
+      // Add the score text to the stage
+      app.stage.addChild(scoreText);
+
+      if (hearts_list.length > 0) {
+        for (let i  = 0; i < hearts_list.length; i++) {
+          app.stage.removeChild(hearts_list[i]);
+        }
+        hearts_list = []
+      }
+
+      for (let i = 0; i < hearts; i++) {
+        const heart = PIXI.Sprite.from('./players/Heart.ico')
+  
+        heart.anchor.set(0.5)
+  
+        heart.x = app.screen.width - (40 * (i + 1));
+        heart.y = 50;
+        heart.width = 50;
+        heart.height = 50;
+        
+  
+        hearts_list.push(heart)
+  
+        app.stage.addChild(heart);
+      }
 
       currentTime += 1
       if (currentTime > 300) {
@@ -116,7 +162,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           }
           app.stage.removeChild(i)
           let elementToRemove: any = i
-          cornObjects = cornObjects.filter(item => item !== elementToRemove)
+          enemiesObjects = enemiesObjects.filter(item => item !== elementToRemove)
           console.log(hearts)
           if (hearts <= 0) {
             window.location.replace(Constant.rootURL + '/endGame')
