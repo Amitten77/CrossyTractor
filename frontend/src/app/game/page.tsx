@@ -31,6 +31,7 @@ let SPEED = 5;
 const pixiContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
     const audio = document.getElementById('deereAudio') as HTMLVideoElement
             if (audio) {
               audio.play()
@@ -324,7 +325,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               app.stage.addChild(farmerStanding)
             } else {
               //implement delay here - use time keeping variable
-              lassoCooldown = 0
+              lassoCooldown = 15
             }
           }
         }
