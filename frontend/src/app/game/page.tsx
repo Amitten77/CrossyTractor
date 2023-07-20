@@ -201,7 +201,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               corn.width = 75
               corn.height = 75
               corn.x = app.screen.width - corn.width
-              corn.y = random.int(350, app.screen.height - 30)
+              corn.y = random.int(350, 530)
               app.stage.addChild(corn)
               cornObjects.push(corn)
             } else if (randomNum==1) {
@@ -216,7 +216,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               obstacle.height = 75
               obstacle.anchor.set(0.5);
               obstacle.x = app.screen.width - obstacle.width
-              obstacle.y = random.int(350, app.screen.width - 30)
+              obstacle.y = random.int(350, 530)
               app.stage.addChild(obstacle)
               enemiesObjects.push(obstacle)
               enemiesMap[obstacle] = false
