@@ -1,5 +1,9 @@
 'use client'
 import { useState } from 'react';
+import './newbg.css';
+import * as PIXI from 'pixi.js';
+import { get } from 'http';
+import { start } from 'repl';
 import random from 'random'
 
 
@@ -20,7 +24,7 @@ export default function Home() {
     setName(e.target.value);
   }
 
-  const buttonStyles = {
+  const buttonStyle1 = {
     color: "#000000",
     backgroundColor: "#ffde00",
     fontSize: "22px",
@@ -28,35 +32,54 @@ export default function Home() {
     borderRadius: "8px",
     padding: "15px 50px",
     cursor: "pointer",
-    fontFace: "OCR A Std, monospace"
+    fontFace: "OCR A Std, monospace",
+    position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+    bottom: '20px', /* Adjust the distance from the bottom of the screen */
+    left: '50%', /* Center the container horizontally */
+    transform: 'translateX(-150%)',
+  };
+
+  const buttonStyle2 = {
+    color: "#000000",
+    backgroundColor: "#ffde00",
+    fontSize: "22px",
+    border: "6px solid #000000",
+    borderRadius: "8px",
+    padding: "15px 50px",
+    cursor: "pointer",
+    fontFace: "OCR A Std, monospace",
+    position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+    bottom: '20px', /* Adjust the distance from the bottom of the screen */
+    left: '50%', /* Center the container horizontally */
+    transform: 'translateX(-10%)',
   };
 
   return (
-    <>
-      <h1 className="text-6xl flex justify-center mt-6">Crossy Tractor!!</h1>
-      <h2>What is your name?</h2>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Your Name" onChange={handleInputChange}/>
+    <div className='HomeScreen'>
+      {/* <h1 className="text-6xl flex justify-center mt-6">Crossy Tractor!!</h1> */}
+      {/* <h2>What is your name?</h2> */}
+      <input className="object-bottom shadow justify-center appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter Your Name" onChange={handleInputChange}/>
       <div id="control-panel" className='flex justify-center mt-8'>
         <a href="game">
-          <button id="GM" style={buttonStyles} onClick={handleOnClick}>Play Game</button>
+          <button id="GM" style={buttonStyle1} onClick={handleOnClick}>Play Game</button>
         </a>
         <a href="leaderboard">
-          <button id="LDBD" style={buttonStyles} onClick={() => {
+          <button id="LDBD" style={buttonStyle2} onClick={() => {
             const audio = document.getElementById('audio') as HTMLVideoElement
             if (audio) {
               audio.play()
             }
           }}>Check out Leaderboard</button>
         </a>
-        <a href="endGame">
-          <button id="EGM" style={buttonStyles} onClick={() => {
+        {/* <a href="endGame">
+          <button id="EGM" style={buttonStyle2} onClick={() => {
             const audio = document.getElementById('audio') as HTMLVideoElement
             if (audio) {
               audio.play()
             }
           }}>End Screen</button>
-        </a>
+        </a> */}
       </div>
-    </>
+    </div>
   )
 }
