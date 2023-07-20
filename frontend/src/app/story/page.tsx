@@ -19,7 +19,8 @@ const page = () => {
           if (event.key === 'Enter') {
             // Your code to execute when the 'Enter' key is pressed
             console.log('Enter key was pressed!');
-            window.location.replace(Constant.rootURL + '/game')
+            console.log(Constant.rootURL)
+            window.location.replace('/game')
           }
         };
     
