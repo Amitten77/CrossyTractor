@@ -67,7 +67,7 @@ export default function Home() {
       {/* <h2>What is your name?</h2> */}
       <input className="w-6/12 object-bottom shadow justify-center appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" style={inputStyle} type="text" placeholder="Enter Your Name" onChange={handleInputChange}/>
       <div id="control-panel" className='flex justify-center mt-8'>
-        <a href="game">
+        <a href="story">
           <button id="GM" style={buttonStyle1} onClick={handleOnClick}>Play Game</button>
         </a>
         <a href="leaderboard">

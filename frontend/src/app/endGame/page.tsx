@@ -119,6 +119,7 @@ const endGame = () => {
         console.error('Error occurred during write operation:', error);
       });
       setNotAdded(false);
+      window.location.replace(Constant.rootURL + '/leaderboard')
     }
   }
 
@@ -131,7 +132,7 @@ const endGame = () => {
           <div className="text" style={fontStyles}>
             <h1 className='text-6xl flex justify-center mt-6'>Game Over!</h1>
             <div className="text2" style={fontStyles2}>
-            <p className='w-80 pl-12'>{name}, your score is: {score}</p>
+            <h1 className='w-96 pl-10 text-xl'>{name}, your score is: {score}</h1>
             </div>
           </div>
         <button id="addLeaderboard" style={buttonStyle1} onClick={handleLeaderboard}>Add to Leaderboard</button>

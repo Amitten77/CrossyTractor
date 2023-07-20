@@ -295,7 +295,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (lassoCooldown > 30) {
         if (keys["38"]) {
           for (let enemy of enemiesObjects) {
-            if (Math.abs(farmerWithoutLasso.x - enemy.x) < 50) {
+            if (Math.abs(farmerWithoutLasso.x - enemy.x) < 100) {
                 const audio = document.getElementById('whooshAudio') as HTMLVideoElement
                 if (audio) {
                 audio.play()
