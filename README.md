@@ -53,6 +53,10 @@ Backend:
 - **MongoDB** for storing leaderboard data
 - Render.com for deployment
 
+Reference Resources:
+- https://chat.openai.com/
+- https://stablediffusionweb.com/
+- https://www.chipotle.com/order#menu
 
 
 
