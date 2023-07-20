@@ -24,6 +24,7 @@ export default function RootLayout({
         <audio id="audio" controls src="/sounds/corn_sound.mp3" className='invisible'/>
         <audio id="oopsAudio" controls src="/sounds/umph.mp3" className='invisible'/>
         <audio id="deereAudio" controls src="/sounds/deere.mp3" className='invisible'/>
+        <audio id="whooshAudio" controls src="/sounds/whoosh.mp3" className='invisible'/>
         </body>
     </html>
   )
