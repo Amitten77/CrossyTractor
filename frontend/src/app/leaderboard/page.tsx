@@ -1,8 +1,10 @@
 'use client'
 import React from 'react'
 import { useEffect } from 'react';
+import './ldbd.css';
 import { useState } from 'react';
 import Constant from '../../../config.json'
+
 
 const buttonStyles = {
   color: "#000000",
@@ -16,8 +18,9 @@ const buttonStyles = {
 };
 
 const leaderboardStyles = {
-  fontFamily: 'VT323', // Use the 'VT323' font from Google Fonts
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
   fontSize: '16px',
+  // backgroundColor: "#ffde00",
   // fontWeight: 'bold',
 };
 
@@ -44,21 +47,23 @@ const Leaderboard = () => {
 
 
       <div id="leaderboardDiv" style={leaderboardStyles}>
-        <h1 className='text-7xl flex justify-center mb-8 mt-8'>Leaderboard</h1>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
         <div className='flex justify-center mb-8'>
           <table className="border-collapse border border-slate-500">
               <tr>
-                  <th className="border-2 border-black p-6">Rank</th>
-                  <th className="border-2 border-black ...">Name</th>
-                  <th className="border-2 border-black ...">Score</th>
+                  <th className="border-2 bg-lime-200 border-black p-3">Rank</th>
+                  <th className="border-2 bg-lime-200 border-black ...">Name</th>
+                  <th className="border-2 bg-lime-200 border-black ...">Score</th>
               </tr>
               {entries.map(entry => {
                 rank += 1
               return (
               <tr key={entry._id}>
-                <td className="border-2 border-black p-7">{rank}</td>
-                <td className="border-2 border-black p-7">{entry._user}</td>
-                <td className="border-2 border-black p-7">{entry._score}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{rank}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{entry._user}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{entry._score}</td>
               </tr>
               )
             })}
