@@ -161,8 +161,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (user.x > app.screen.width - 30) {
         user.x = app.screen.width - 30
       }
-      if (user.y > app.screen.height - 30) {
-        user.y = app.screen.height - 30
+      if (user.y > 530) {
+        user.y = 530
       }
       if (farmerStanding.x < 75) {
         farmerStanding.x = 75
@@ -223,8 +223,6 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
             }
         currentTime = 0
       }
-
-
 
       for (const i of enemiesObjects) {
         i.x -= enemySpeed
