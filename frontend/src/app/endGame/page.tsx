@@ -9,7 +9,7 @@ import Constant from '../../../config.json'
 //   { name: 'Player 3', score: 60 },
 // ];
 
-const buttonStyles = {
+const buttonStyle1 = {
   color: "#000000",
   backgroundColor: "#ffde00",
   fontSize: "22px",
@@ -17,7 +17,40 @@ const buttonStyles = {
   borderRadius: "8px",
   padding: "15px 50px",
   cursor: "pointer",
-  fontFace: "OCR A Std, monospace"
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-150%)',
+};
+
+const buttonStyle2 = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-10%)',
+};
+const buttonStyle3 = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-10%)',
 };
 
 const endGame = () => {

@@ -6,7 +6,6 @@ import { get } from 'http';
 import { start } from 'repl';
 import random from 'random'
 
-// import Constant from '../../../config.json'
 
 export default function Home() {
   const [name, setName] = useState<string>("Player")
@@ -15,6 +14,10 @@ export default function Home() {
     const playerId = random.int(0, 1000000)
     localStorage.setItem('name', name);
     localStorage.setItem('playerId', playerId.toString())
+    const audio = document.getElementById('audio') as HTMLVideoElement
+    if (audio) {
+      audio.play()
+    }
   }
 
   const handleInputChange = (e: any) => {
@@ -61,11 +64,21 @@ export default function Home() {
           <button id="GM" style={buttonStyle1} onClick={handleOnClick}>Play Game</button>
         </a>
         <a href="leaderboard">
-          <button id="LDBD" style={buttonStyle2}>Check out Leaderboard</button>
+          <button id="LDBD" style={buttonStyle1} onClick={() => {
+            const audio = document.getElementById('audio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
+          }}>Check out Leaderboard</button>
         </a>
-        {/* <a href="endGame">
-          <button id="EGM" style={buttonStyles}>End Screen</button>
-        </a> */}
+        <a href="endGame">
+          <button id="EGM" style={buttonStyle2} onClick={() => {
+            const audio = document.getElementById('audio') as HTMLVideoElement
+            if (audio) {
+              audio.play()
+            }
+          }}>End Screen</button>
+        </a>
       </div>
     </div>
   )
