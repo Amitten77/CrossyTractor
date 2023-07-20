@@ -16,6 +16,7 @@ let hearts: any = 3
 let enemiesMap: any = {}
 let scoreIncreaseTimeTracker: any = 0
 let minAmountOfCornUntilEthanolPowerup: any = 10
+let lassoCooldown = 10
 
 function rectsIntersect(a: any, b: any) {
   let aBox = a.getBounds();
@@ -163,6 +164,13 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (user.y > app.screen.height - 30) {
         user.y = app.screen.height - 30
       }
+      if (farmerStanding.x < 75) {
+        farmerStanding.x = 75
+      }
+      if (farmerStanding.x > app.screen.width-60) {
+        farmerStanding.x = app.screen.width - 60
+      }
+
       scoreIncreaseTimeTracker += 1
 
       if (scoreIncreaseTimeTracker <= 500) {
@@ -277,7 +285,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         user.x += SPEED
       }
 
-
+      lassoCooldown += 1
       //Farmer Controls
       if (keys["37"]) {
         farmerStanding.x -= SPEED
@@ -285,48 +293,41 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (keys["39"]) {
         farmerStanding.x += SPEED
       }
-      if (keys["67"]) {
-        farmerWithoutLasso.x = farmerStanding.x-10
-        lasso.x = farmerStanding.x
-        lasso.y = farmerStanding.y
-        app.stage.removeChild(farmerStanding)
-        app.stage.addChild(farmerWithoutLasso)
-        app.stage.addChild(lasso)
-        for (let enemy of enemiesObjects) {
-          if (Math.abs(farmerWithoutLasso.x - enemy.x) < 20) {
-            lasso.height = enemy.y - farmerWithoutLasso.y
-            for (let j=1; j<lasso.height; j+=1) {
-              if (enemy.y - farmerWithoutLasso.y > 10) {
-                enemy.y -= j
-              } else {
-                app.stage.removeChild(enemy)
+      if (lassoCooldown > 10) {
+        if (keys["67"]) {
+          for (let enemy of enemiesObjects) {
+            if (Math.abs(farmerWithoutLasso.x - enemy.x) < 50) {
+              enemy.x = farmerWithoutLasso.x
+              farmerWithoutLasso.x = farmerStanding.x-10
+              lasso.x = farmerStanding.x
+              lasso.y = farmerStanding.y
+              app.stage.removeChild(farmerStanding)
+              app.stage.addChild(farmerWithoutLasso)
+              app.stage.addChild(lasso)
+              lasso.height = enemy.y - farmerWithoutLasso.y
+              for (let j=1; j<lasso.height; j+=1) {
+                if (enemy.y - farmerWithoutLasso.y > 10) {
+                  enemy.y -= j
+                }
+                if (lasso.height > 10) {
+                  lasso.height -= j
+                } else {
+                  app.stage.removeChild(lasso)
+                }
               }
-              if (lasso.height > 10) {
-                lasso.height -= j
-              } else {
-                app.stage.removeChild(lasso)
-              }
+              let elementToRemove2 = enemy
+              enemiesObjects.filter(item => item !== elementToRemove2)
+              enemiesMap[enemy] = true
+              app.stage.removeChild(farmerWithoutLasso)
+              app.stage.addChild(farmerStanding)
+            } else {
+              //implement delay here - use time keeping variable
+              lassoCooldown = 0
             }
-            let elementToRemove2 = enemy
-            enemiesObjects.filter(item => item !== elementToRemove2)
-            enemiesMap[enemy] = true
-            app.stage.removeChild(farmerWithoutLasso)
-            app.stage.addChild(farmerStanding)
-          } else {
-            lasso.height = 350
-            for (let j=1; j<lasso.height; j+=1) {
-              if (lasso.height > 10) {
-                lasso.height -= j
-              } else {
-                app.stage.removeChild(lasso)
-              }
-            }
-            app.stage.removeChild(farmerWithoutLasso)
-            app.stage.addChild(farmerStanding)
           }
         }
+        lassoCooldown = 0
       }
-
 
   });
 
