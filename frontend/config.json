@@ -1,4 +1,4 @@
 {
-    "rootURL": "http://localhost:3000",
+    "rootURL": "crossy-tractor-jd.vercel.app",
     "backendURL": "https://crossy-tractor-api.onrender.com"
 }
