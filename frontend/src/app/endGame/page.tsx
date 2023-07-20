@@ -9,7 +9,7 @@ import Constant from '../../../config.json'
 //   { name: 'Player 3', score: 60 },
 // ];
 
-const buttonStyles = {
+const buttonStyle1 = {
   color: "#000000",
   backgroundColor: "#ffde00",
   fontSize: "22px",
@@ -17,7 +17,62 @@ const buttonStyles = {
   borderRadius: "8px",
   padding: "15px 50px",
   cursor: "pointer",
-  fontFace: "OCR A Std, monospace"
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-140%)',
+};
+
+const buttonStyle2 = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-47%)',
+};
+const buttonStyle3 = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace",
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  bottom: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(40%)',
+};
+
+const fontStyles = {
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
+  fontSize: '16px',
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  top: '20px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-50%)',
+  // backgroundColor: "#ffde00",
+  // fontWeight: 'bold',
+};
+
+const fontStyles2 = {
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
+  fontSize: '18px',
+  position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
+  top: '80px', /* Adjust the distance from the bottom of the screen */
+  left: '50%', /* Center the container horizontally */
+  transform: 'translateX(-50%)',
+  // backgroundColor: "#ffde00",
+  // fontWeight: 'bold',
 };
 
 const endGame = () => {
@@ -68,15 +123,22 @@ const endGame = () => {
   return (
     <div>
       { loading ? <p>Loading....</p> :
-      <div className="endgame-container">
-        <h1>Game Over!</h1>
-        <p>{name}, your score is: {score}</p>
-        <button id="addLeaderboard" style={buttonStyles} onClick={handleLeaderboard}>Add to Leaderboard</button>
+      // <div className="endgame-container">
+        <div className="endgame-container">
+          <div className="text" style={fontStyles}>
+            <h1 className='text-6xl flex justify-center mt-6'>Game Over!</h1>
+            <div className="text2" style={fontStyles2}>
+            <p>{name}, your score is: {score}</p>
+            </div>
+          </div>
+        <a href="leaderboard">
+        <button id="addLeaderboard" style={buttonStyle1} onClick={handleLeaderboard}>Add to Leaderboard</button>
+        </a>
         <a href="/">
-          <button id="Restart" style={buttonStyles} >Back to Home</button>
+          <button id="Restart" style={buttonStyle2} >Back to Home</button>
         </a>
         <a href="leaderboard">
-          <button id="LDBD" style={buttonStyles} >Check out Leaderboard</button>
+          <button id="LDBD" style={buttonStyle3} >Check out Leaderboard</button>
         </a>
       </div>
       }

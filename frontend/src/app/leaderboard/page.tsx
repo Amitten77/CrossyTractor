@@ -1,8 +1,28 @@
 'use client'
 import React from 'react'
 import { useEffect } from 'react';
+import './ldbd.css';
 import { useState } from 'react';
 import Constant from '../../../config.json'
+
+
+const buttonStyles = {
+  color: "#000000",
+  backgroundColor: "#ffde00",
+  fontSize: "22px",
+  border: "6px solid #000000",
+  borderRadius: "8px",
+  padding: "15px 50px",
+  cursor: "pointer",
+  fontFace: "OCR A Std, monospace"
+};
+
+const leaderboardStyles = {
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
+  fontSize: '16px',
+  // backgroundColor: "#ffde00",
+  // fontWeight: 'bold',
+};
 
 const Leaderboard = () => {
   const [loading, setLoading] = useState(true)
@@ -26,29 +46,31 @@ const Leaderboard = () => {
       <p>Loading...</p> : 
 
 
-      <div id="leaderboardDiv">
-        <h1 className='text-7xl flex justify-center mb-8 mt-8'>Leaderboard</h1>
+      <div id="leaderboardDiv" style={leaderboardStyles}>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
+        <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
         <div className='flex justify-center mb-8'>
           <table className="border-collapse border border-slate-500">
               <tr>
-                  <th className="border border-slate-600 p-8">Rank</th>
-                  <th className="border border-slate-600 p-8">Name</th>
-                  <th className="border border-slate-600 p-8">Score</th>
+                  <th className="border-2 bg-lime-200 border-black p-3">Rank</th>
+                  <th className="border-2 bg-lime-200 border-black ...">Name</th>
+                  <th className="border-2 bg-lime-200 border-black ...">Score</th>
               </tr>
               {entries.map(entry => {
                 rank += 1
               return (
               <tr key={entry._id}>
-                <td className="border border-slate-600 p-6">{rank}</td>
-                <td className="border border-slate-600 p-6">{entry._user}</td>
-                <td className="border border-slate-600 p-6">{entry._score}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{rank}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{entry._user}</td>
+                <td className="border-2 bg-lime-200 border-black p-5">{entry._score}</td>
               </tr>
               )
             })}
         </table>
       </div>
       <a href="/" className='flex justify-center'>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mr-6'>Back to Home</button>
+        <button id="returnHome" style={buttonStyles}>Back to Home</button>
       </a>
       </div>
       }
@@ -57,3 +79,57 @@ const Leaderboard = () => {
 }
 
 export default Leaderboard
+
+
+
+// import React from 'react';
+
+// const leaderboardData = [
+//   { _id: 1, _user: 'Player 1', _score: 100 },
+//   { _id: 2, _user: 'Player 2', _score: 80 },
+//   { _id: 3, _user: 'Player 3', _score: 60 },
+// ];
+
+// const Leaderboard = () => {
+//   let rank = 0;
+
+//   const buttonStyles = {
+//     // Add your button styles here if needed
+//   };
+
+//   return (
+//     <div id="leaderboardDiv">
+//       <h1 className="text-4xl font-bold text-center mb-8 mt-8">Leaderboard</h1>
+//       <div className="flex justify-center mb-8">
+//         <table className="border-collapse border border-slate-500">
+//           <thead>
+//             <tr>
+//               <th className="border border-slate-600 p-4 font-bold">Rank</th>
+//               <th className="border border-slate-600 p-4 font-bold">Name</th>
+//               <th className="border border-slate-600 p-4 font-bold">Score</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {leaderboardData.map((entry) => {
+//               rank += 1;
+//               return (
+//                 <tr key={entry._id}>
+//                   <td className="border border-slate-600 p-4">{rank}</td>
+//                   <td className="border border-slate-600 p-4">{entry._user}</td>
+//                   <td className="border border-slate-600 p-4">{entry._score}</td>
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       </div>
+//       <div className="flex justify-center">
+//         <a href="/">
+//           <button style={buttonStyles}>Back to Home</button>
+//         </a>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Leaderboard;
