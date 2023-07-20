@@ -241,7 +241,6 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           app.stage.removeChild(i)
           let elementToRemove: any = i
           enemiesObjects = enemiesObjects.filter(item => item !== elementToRemove)
-          console.log(hearts)
           if (hearts <= 0) {
             window.location.replace(Constant.rootURL + '/endGame')
             localStorage.setItem('score', score.toString());
@@ -263,10 +262,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           let elementToRemove: any = j
           cornObjects = cornObjects.filter(item => item !== elementToRemove)
           console.log(score)
-        }
-        if (score >= minAmountOfCornUntilEthanolPowerup) {
-          minAmountOfCornUntilEthanolPowerup += 10
-        }
+        } 
       }
 
       if (keys["87"]) {
