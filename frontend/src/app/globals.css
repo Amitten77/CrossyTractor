@@ -30,5 +30,5 @@ body {
 
     background-image: url('/players/background.png');
     background-size: 1535px 850px;
-
+    font-family: 'Courier, monospace';
 }

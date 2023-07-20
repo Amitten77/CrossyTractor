@@ -64,21 +64,21 @@ export default function Home() {
           <button id="GM" style={buttonStyle1} onClick={handleOnClick}>Play Game</button>
         </a>
         <a href="leaderboard">
-          <button id="LDBD" style={buttonStyle1} onClick={() => {
+          <button id="LDBD" style={buttonStyle2} onClick={() => {
             const audio = document.getElementById('audio') as HTMLVideoElement
             if (audio) {
               audio.play()
             }
           }}>Check out Leaderboard</button>
         </a>
-        <a href="endGame">
+        {/* <a href="endGame">
           <button id="EGM" style={buttonStyle2} onClick={() => {
             const audio = document.getElementById('audio') as HTMLVideoElement
             if (audio) {
               audio.play()
             }
           }}>End Screen</button>
-        </a>
+        </a> */}
       </div>
     </div>
   )
