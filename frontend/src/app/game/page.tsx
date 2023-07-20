@@ -216,7 +216,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               obstacle.height = 75
               obstacle.anchor.set(0.5);
               obstacle.x = app.screen.width - obstacle.width
-              obstacle.y = random.int(350, 540)
+              obstacle.y = random.int(350, app.screen.width - 30)
               app.stage.addChild(obstacle)
               enemiesObjects.push(obstacle)
               enemiesMap[obstacle] = false
@@ -300,6 +300,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         if (keys["67"]) {
           for (let enemy of enemiesObjects) {
             if (Math.abs(farmerWithoutLasso.x - enemy.x) < 50) {
+                const audio = document.getElementById('whooshAudio') as HTMLVideoElement
+                if (audio) {
+                audio.play()
+                }
               enemy.x = farmerWithoutLasso.x
               farmerWithoutLasso.x = farmerStanding.x-10
               lasso.x = farmerStanding.x
