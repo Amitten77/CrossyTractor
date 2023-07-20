@@ -57,7 +57,7 @@ export default function Home() {
 
   const inputStyle = {
     position: "absolute",
-    left: "28%",
+    left: "25%",
     top: "82%"
   }
 
@@ -65,7 +65,7 @@ export default function Home() {
     <div className='HomeScreen'>
       {/* <h1 className="text-6xl flex justify-center mt-6">Crossy Tractor!!</h1> */}
       {/* <h2>What is your name?</h2> */}
-      <input className="w-6/12 object-bottom shadow justify-center appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-5/12" id="username" style={inputStyle} type="text" placeholder="Enter Your Name" onChange={handleInputChange}/>
+      <input className="w-6/12 object-bottom shadow justify-center appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" style={inputStyle} type="text" placeholder="Enter Your Name" onChange={handleInputChange}/>
       <div id="control-panel" className='flex justify-center mt-8'>
         <a href="game">
           <button id="GM" style={buttonStyle1} onClick={handleOnClick}>Play Game</button>
