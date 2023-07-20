@@ -9,7 +9,7 @@ import Constant from '../../../config.json'
 //   { name: 'Player 3', score: 60 },
 // ];
 
-const buttonStyle1 = {
+const buttonStyle1: any = {
   color: "#000000",
   backgroundColor: "#ffde00",
   fontSize: "22px",
@@ -25,7 +25,7 @@ const buttonStyle1 = {
   fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
 
-const buttonStyle2 = {
+const buttonStyle2: any = {
   color: "#000000",
   backgroundColor: "#ffde00",
   fontSize: "22px",
@@ -40,7 +40,7 @@ const buttonStyle2 = {
   transform: 'translateX(-47%)',
   fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
-const buttonStyle3 = {
+const buttonStyle3: any = {
   color: "#000000",
   backgroundColor: "#ffde00",
   fontSize: "22px",
@@ -56,7 +56,7 @@ const buttonStyle3 = {
   fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
 
-const fontStyles = {
+const fontStyles: any = {
   fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
   fontSize: '16px',
   position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */
@@ -67,7 +67,7 @@ const fontStyles = {
   // fontWeight: 'bold',
 };
 
-const fontStyles2 = {
+const fontStyles2: any = {
   fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
   fontSize: '18px',
   position: 'fixed', /* Use 'fixed' to position the container relative to the viewport */

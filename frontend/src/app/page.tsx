@@ -1,9 +1,6 @@
 'use client'
 import { useState } from 'react';
 import './newbg.css';
-import * as PIXI from 'pixi.js';
-import { get } from 'http';
-import { start } from 'repl';
 import random from 'random'
 
 
@@ -24,7 +21,7 @@ export default function Home() {
     setName(e.target.value);
   }
 
-  const buttonStyle1 = {
+  const buttonStyle1: any = {
     color: "#000000",
     backgroundColor: "#ffde00",
     fontSize: "22px",
@@ -39,7 +36,7 @@ export default function Home() {
     fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
   };
 
-  const buttonStyle2 = {
+  const buttonStyle2: any = {
     color: "#000000",
     backgroundColor: "#ffde00",
     fontSize: "22px",
@@ -55,7 +52,7 @@ export default function Home() {
   };
 
 
-  const inputStyle = {
+  const inputStyle: any = {
     position: "absolute",
     left: "25%",
     top: "82%"
