@@ -131,7 +131,7 @@ const endGame = () => {
           <div className="text" style={fontStyles}>
             <h1 className='text-6xl flex justify-center mt-6'>Game Over!</h1>
             <div className="text2" style={fontStyles2}>
-            <p>{name}, your score is: {score}</p>
+            <p className='w-80 pl-12'>{name}, your score is: {score}</p>
             </div>
           </div>
         <button id="addLeaderboard" style={buttonStyle1} onClick={handleLeaderboard}>Add to Leaderboard</button>

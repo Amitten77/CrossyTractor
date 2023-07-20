@@ -161,8 +161,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (user.x > app.screen.width - 30) {
         user.x = app.screen.width - 30
       }
-      if (user.y > 530) {
-        user.y = 530
+      if (user.y > app.screen.height - 30) {
+        user.y = app.screen.height - 30
       }
       if (farmerStanding.x < 75) {
         farmerStanding.x = 75
@@ -291,7 +291,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
         farmerStanding.x += SPEED
       }
       if (lassoCooldown > 10) {
-        if (keys["67"]) {
+        if (keys["38"]) {
           for (let enemy of enemiesObjects) {
             if (Math.abs(farmerWithoutLasso.x - enemy.x) < 50) {
                 const audio = document.getElementById('whooshAudio') as HTMLVideoElement
@@ -304,7 +304,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               lasso.y = farmerStanding.y
               app.stage.removeChild(farmerStanding)
               app.stage.addChild(farmerWithoutLasso)
-              app.stage.addChild(lasso)
+              //app.stage.addChild(lasso)
               lasso.height = enemy.y - farmerWithoutLasso.y
               for (let j=1; j<lasso.height; j+=1) {
                 if (enemy.y - farmerWithoutLasso.y > 10) {
