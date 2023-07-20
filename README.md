@@ -14,7 +14,7 @@
 
 
 
-## Some images of our beatiful game: 
+## Some images of our beautiful game: 
 
 
 
