@@ -14,7 +14,13 @@
 
 
 
-## Some images of our beatiful game: 
+## Some images of our beautiful game: 
+
+![alt text](frontend/public/players/homePic.png)
+
+![alt text](frontend/public/players/leaderboardPic.png)
+
+![alt text](frontend/public/players/mapPic.png)
 
 
 
@@ -29,7 +35,7 @@ So, our game is a one player or two player game! If you are playing with one pla
 Your goal is simple: collect the corn and avoid running over the pigs and cows with the combine.
 
 
-With two players, using the left and right arrow, the second player can control the farmer at the top of the map, and if you press "v" when the farmer is right above an animal, he'll lasso it away. The farmer and the combine are working together!
+With two players, using the left and right arrow, the second player can control the farmer at the top of the map, and if you press the top arrow when the farmer is right above an animal, he'll lasso it away. The farmer and the combine are working together!
 
 ## Repository setup
 ```
