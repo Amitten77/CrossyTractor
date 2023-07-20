@@ -119,7 +119,6 @@ const endGame = () => {
         console.error('Error occurred during write operation:', error);
       });
       setNotAdded(false);
-      window.location.replace(Constant.rootURL + '/leaderboard')
     }
   }
 
