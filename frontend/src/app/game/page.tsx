@@ -193,7 +193,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
               corn.width = 75
               corn.height = 75
               corn.x = app.screen.width - corn.width
-              corn.y = random.int(350, 540)
+              corn.y = random.int(350, app.screen.height - 30)
               app.stage.addChild(corn)
               cornObjects.push(corn)
             } else if (randomNum==1) {
@@ -235,6 +235,9 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           enemiesObjects = enemiesObjects.filter(item => item !== elementToRemove)
           console.log(hearts)
           if (hearts <= 0) {
+            SPEED = 0;
+            enemySpeed = 0
+            cornSpeed = 0
             window.location.replace(Constant.rootURL + '/endGame')
             localStorage.setItem('score', score.toString());
           }

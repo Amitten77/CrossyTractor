@@ -37,6 +37,7 @@ const Leaderboard = () => {
               </tr>
               {entries.map(entry => {
                 rank += 1
+                if (rank < 7) {
               return (
               <tr key={entry._id}>
                 <td className="border border-slate-600 p-6">{rank}</td>
@@ -44,6 +45,7 @@ const Leaderboard = () => {
                 <td className="border border-slate-600 p-6">{entry._score}</td>
               </tr>
               )
+                }
             })}
         </table>
       </div>
