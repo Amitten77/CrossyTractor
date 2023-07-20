@@ -2,7 +2,7 @@
 
 ## You can play our game right now  (if the server is running :wink:): https://crossytractor-production.up.railway.app
 
-## And watch our demo video here: 
+## And watch our demo video here: https://youtu.be/sGEJH6Rxo4U
 
 ## Team Members:
 
