@@ -290,7 +290,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (keys["39"]) {
         farmerStanding.x += SPEED
       }
-      if (lassoCooldown > 10) {
+
+      if (lassoCooldown > 30) {
         if (keys["38"]) {
           for (let enemy of enemiesObjects) {
             if (Math.abs(farmerWithoutLasso.x - enemy.x) < 50) {
