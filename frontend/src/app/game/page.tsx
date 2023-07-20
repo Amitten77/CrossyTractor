@@ -66,8 +66,8 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
 
     const farmerStanding = PIXI.Sprite.from('./players/farmer.ico');
-    const farmerWithoutLasso = PIXI.Sprite.from('./players/FILE_NAME_HERE')
-    const lasso = PIXI.Sprite.from('./players/lasso')
+    const farmerWithoutLasso = PIXI.Sprite.from('./players/farmerExtend.ico')
+    const lasso = PIXI.Sprite.from('./players/lasso.ico')
     farmerStanding.anchor.set(0.5);
     farmerWithoutLasso.anchor.set(0.5);
     lasso.anchor.set(0.5)
@@ -80,7 +80,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
     //Needs editting
     farmerWithoutLasso.y = 230
-    lasso.height = 0
+    farmerWithoutLasso.height = 100
+    farmerWithoutLasso.width = 100
+    lasso.y = 230
+    lasso.height = 10
     
 
     // center the sprite's anchor point
@@ -282,26 +285,43 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (keys["39"]) {
         farmerStanding.x += SPEED
       }
-      if (keys["32"]) {
+      if (keys["67"]) {
         farmerWithoutLasso.x = farmerStanding.x-10
         lasso.x = farmerStanding.x
+        lasso.y = farmerStanding.y
         app.stage.removeChild(farmerStanding)
         app.stage.addChild(farmerWithoutLasso)
         app.stage.addChild(lasso)
-        for (let i of enemiesObjects) {
-          if (farmerStanding.x - i.x < 20) {
-            lasso.height = Math.abs(farmerStanding.y - i.y)
-            for (let j=1; j<app.screen.height-i.y; j+5) {
-              i.y -= j
-              if (lasso.height > 0) {
+        for (let enemy of enemiesObjects) {
+          if (Math.abs(farmerWithoutLasso.x - enemy.x) < 20) {
+            lasso.height = enemy.y - farmerWithoutLasso.y
+            for (let j=1; j<lasso.height; j+=1) {
+              if (enemy.y - farmerWithoutLasso.y > 10) {
+                enemy.y -= j
+              } else {
+                app.stage.removeChild(enemy)
+              }
+              if (lasso.height > 10) {
                 lasso.height -= j
+              } else {
+                app.stage.removeChild(lasso)
               }
             }
-            let elementToRemove2 = i
+            let elementToRemove2 = enemy
             enemiesObjects.filter(item => item !== elementToRemove2)
-            enemiesMap[i] = true
+            enemiesMap[enemy] = true
             app.stage.removeChild(farmerWithoutLasso)
-            app.stage.removeChild(lasso)
+            app.stage.addChild(farmerStanding)
+          } else {
+            lasso.height = 350
+            for (let j=1; j<lasso.height; j+=1) {
+              if (lasso.height > 10) {
+                lasso.height -= j
+              } else {
+                app.stage.removeChild(lasso)
+              }
+            }
+            app.stage.removeChild(farmerWithoutLasso)
             app.stage.addChild(farmerStanding)
           }
         }
