@@ -22,6 +22,7 @@ const buttonStyle1 = {
   bottom: '20px', /* Adjust the distance from the bottom of the screen */
   left: '50%', /* Center the container horizontally */
   transform: 'translateX(-140%)',
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
 
 const buttonStyle2 = {
@@ -37,6 +38,7 @@ const buttonStyle2 = {
   bottom: '20px', /* Adjust the distance from the bottom of the screen */
   left: '50%', /* Center the container horizontally */
   transform: 'translateX(-47%)',
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
 const buttonStyle3 = {
   color: "#000000",
@@ -51,6 +53,7 @@ const buttonStyle3 = {
   bottom: '20px', /* Adjust the distance from the bottom of the screen */
   left: '50%', /* Center the container horizontally */
   transform: 'translateX(40%)',
+  fontFamily: 'Courier, monospace', // Use the 'VT323' font from Google Fonts
 };
 
 const fontStyles = {
@@ -124,16 +127,14 @@ const endGame = () => {
     <div>
       { loading ? <p>Loading....</p> :
       // <div className="endgame-container">
-        <div className="endgame-container">
+        <div className="endgame-container text-black">
           <div className="text" style={fontStyles}>
             <h1 className='text-6xl flex justify-center mt-6'>Game Over!</h1>
             <div className="text2" style={fontStyles2}>
             <p>{name}, your score is: {score}</p>
             </div>
           </div>
-        <a href="leaderboard">
         <button id="addLeaderboard" style={buttonStyle1} onClick={handleLeaderboard}>Add to Leaderboard</button>
-        </a>
         <a href="/">
           <button id="Restart" style={buttonStyle2} >Back to Home</button>
         </a>

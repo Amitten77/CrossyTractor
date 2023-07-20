@@ -46,7 +46,7 @@ const Leaderboard = () => {
       <p>Loading...</p> : 
 
 
-      <div id="leaderboardDiv" style={leaderboardStyles}>
+      <div id="leaderboardDiv" style={leaderboardStyles} className='text-black'>
         <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
         <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
         <h1 className='text-7xl flex justify-center mb-12 mt-12'></h1>
