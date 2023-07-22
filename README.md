@@ -1,8 +1,8 @@
-# Welcome to CrossyTractor!!! :farmer: :cow: :corn: :pig: 
+# Welcome to CrossyTractor (Research Park Hackathon 2023 2nd Place Overall Project)!!! :farmer: :cow: :corn: :pig: 
 
-## You can play our game right now  (if the server is running :wink:): 
+## You can play our game right now  (if the server is running :wink:): https://crossytractor-production.up.railway.app
 
-## And watch our demo video here: 
+## And watch our demo video here: https://youtu.be/sGEJH6Rxo4U
 
 ## Team Members:
 
