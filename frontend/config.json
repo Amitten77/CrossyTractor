@@ -1,4 +1,4 @@
 {
-    "rootURL": "http://localhost:3000/",
+    "rootURL": "https://crossytractor-production.up.railway.app",
     "backendURL": "https://crossy-tractor-api.onrender.com"
 }
