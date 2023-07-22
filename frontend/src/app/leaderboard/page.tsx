@@ -43,7 +43,7 @@ const Leaderboard = () => {
   return (
     <div>
       {loading ? 
-      <p>Loading...</p> : 
+      <h1 className='text-black text-9xl'>Loading...</h1> : 
 
 
       <div id="leaderboardDiv" style={leaderboardStyles} className='text-black'>

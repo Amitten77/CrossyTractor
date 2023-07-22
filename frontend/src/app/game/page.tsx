@@ -119,7 +119,7 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
 
       scoreText = new PIXI.Text('Corn Harvested: ' + score.toString(), {
         fontFamily: 'Arial',
-        fontSize: 24,
+        fontSize: 72,
         fill: 0x000000, // Color in hexadecimal format
       });
       
@@ -142,10 +142,10 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
   
         heart.anchor.set(0.5)
   
-        heart.x = app.screen.width - (40 * (i + 1));
-        heart.y = 50;
-        heart.width = 50;
-        heart.height = 50;
+        heart.x = app.screen.width - (70 * (i + .5));
+        heart.y = 40;
+        heart.width = 100;
+        heart.height = 100;
         
   
         hearts_list.push(heart)
@@ -177,11 +177,11 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
       if (scoreIncreaseTimeTracker <= 500) {
         currentTime += 1
       } else if (scoreIncreaseTimeTracker > 500 && scoreIncreaseTimeTracker <= 1000) {
-        currentTime += 3
+        currentTime += 2
       } else if (scoreIncreaseTimeTracker > 1000 && scoreIncreaseTimeTracker <= 1500) {
-        currentTime += 5
+        currentTime += 3
       } else {
-        currentTime += 7
+        currentTime += 4
       }
       if (currentTime > 300) {
         let randomNum = 0
@@ -189,12 +189,12 @@ const pixiContainerRef = useRef<HTMLDivElement>(null);
           randomNum = random.int(1,4)
         } else if (scoreIncreaseTimeTracker > 300 && scoreIncreaseTimeTracker <= 600) {
           randomNum = random.int(1,3)
-          enemySpeed += 0.5
-          cornSpeed += 0.5
+          enemySpeed += .1
+          cornSpeed += .1
         } else {
           randomNum = random.int(1,2)
-          enemySpeed += 0.5
-          cornSpeed += 0.5
+          enemySpeed += .1
+          cornSpeed += .1
         }
             if (randomNum==2 || randomNum==3 || randomNum==4) {
               const corn = PIXI.Sprite.from('./players/corn-removebg-preview.ico');
